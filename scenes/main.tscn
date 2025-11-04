@@ -1,0 +1,502 @@
+[gd_scene load_steps=7 format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="Texture2D" uid="uid://xdblungbmp8u" path="res://assets/img/pfp.jpg" id="1_0wfyh"]
+[ext_resource type="Theme" uid="uid://cns58raf0qvvk" path="res://assets/themes/main.tres" id="2_0wfyh"]
+[ext_resource type="FontFile" uid="uid://dlabhcy3vva41" path="res://fonts/otf/MomoTrustDisplay-Regular.otf" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://b8byg5ki41oxf" path="res://scripts/sidebar.gd" id="2_sugp2"]
+[ext_resource type="Texture2D" uid="uid://ddaadg4apqkt" path="res://assets/img/burg.png" id="3_tefeu"]
+[ext_resource type="Script" uid="uid://dargk4m5lfesx" path="res://scripts/side_menu.gd" id="4_tbgi4"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2464, 0.2464, 0.28, 1)
+
+[node name="Tasks" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tasks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Tasks/VBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+theme_override_fonts/font = ExtResource("2_jyhfs")
+text = "TODAY'S TASK!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Control" type="Control" parent="Tasks/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tasks/VBoxContainer/Control"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Tasks/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Do 20 Pushups!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Completed" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Completed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+theme_override_fonts/font = ExtResource("2_jyhfs")
+text = "You're Doing Great!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="Completed/VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+text = "Completed Tasks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Completed/VBoxContainer"]
+custom_minimum_size = Vector2(0, 700)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Completed/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0wfyh")
+text = "Do 10 Squats!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control2"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Hold a door to a stranger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control3"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Make a salad!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control4"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Make a salad!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control5" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control5"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Make a salad!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control6" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control6"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Make a salad!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control7" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control7"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Make a salad!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.5
+offset_right = 122.5
+offset_bottom = 400.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+theme_override_fonts/font = ExtResource("2_jyhfs")
+text = "365 days
+Progress"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+max_value = 365.0
+value = 43.0
+
+[node name="Label2" type="Label" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 125)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+theme_override_font_sizes/font_size = 46
+text = "Recently completed Tasks"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="MainMenu/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/VBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0wfyh")
+text = "Do 10 Squats!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="MainMenu/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/VBoxContainer/VBoxContainer/Control2"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Hold a door to a stranger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="MainMenu/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/VBoxContainer/VBoxContainer/Control3"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.21960784, 1)
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer/VBoxContainer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_0wfyh")
+text = "Make a salad!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="MainMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+theme_override_font_sizes/font_size = 36
+text = "Go to completed tasks
+to see all tasks that you completed"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 180.0
+theme = ExtResource("2_0wfyh")
+icon = ExtResource("3_tefeu")
+flat = true
+icon_alignment = 1
+script = ExtResource("2_sugp2")
+
+[node name="SideMenu" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 562.0
+offset_bottom = 1282.0
+script = ExtResource("4_tbgi4")
+
+[node name="ColorRect2" type="ColorRect" parent="SideMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20953685, 0.20953235, 0.23730701, 1)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SideMenu"]
+layout_mode = 0
+offset_right = 562.0
+offset_bottom = 1234.0
+theme_override_constants/separation = 100
+
+[node name="Container" type="Control" parent="SideMenu/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SideMenu/VBoxContainer2/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0wfyh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SideMenu/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DailyTask" type="Button" parent="SideMenu/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+text = "Daily Tasks"
+
+[node name="CompletedTask" type="Button" parent="SideMenu/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+text = "Completed Tasks"
+
+[node name="About" type="Button" parent="SideMenu/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+text = "About
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SideMenu/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ProgressBar" type="ProgressBar" parent="SideMenu/VBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+max_value = 365.0
+value = 43.0
+
+[node name="Level" type="Button" parent="SideMenu/VBoxContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
+text = "Level
+"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer/DailyTask" to="SideMenu" method="_on_daily_task_pressed"]
+[connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer/CompletedTask" to="SideMenu" method="_on_completed_task_pressed"]
+[connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer/About" to="SideMenu" method="_on_about_pressed"]
+[connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer2/Level" to="SideMenu" method="_on_level_pressed"]
