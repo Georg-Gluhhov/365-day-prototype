@@ -1,11 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=17 format=3 uid="uid://155xx7s6y6ta"]
 
-[ext_resource type="Texture2D" uid="uid://xdblungbmp8u" path="res://assets/img/pfp.jpg" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://co2cwoxt8fr8b" path="res://scripts/tasks.gd" id="1_tipki"]
 [ext_resource type="Theme" uid="uid://cns58raf0qvvk" path="res://assets/themes/main.tres" id="2_0wfyh"]
 [ext_resource type="FontFile" uid="uid://dlabhcy3vva41" path="res://fonts/otf/MomoTrustDisplay-Regular.otf" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://b8byg5ki41oxf" path="res://scripts/sidebar.gd" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://ddaadg4apqkt" path="res://assets/img/burg.png" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://dargk4m5lfesx" path="res://scripts/side_menu.gd" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://dcehtbknor7lh" path="res://scripts/task_control.gd" id="4_tipki"]
+[ext_resource type="Script" uid="uid://mhyptc6emuw5" path="res://scripts/completed.gd" id="5_85g3d"]
+[ext_resource type="Script" uid="uid://03jbkpkjqktm" path="res://main_menu.gd" id="6_choun"]
+[ext_resource type="Texture2D" uid="uid://e5famrw2emdj" path="res://assets/img/365.svg" id="7_o6xl0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tefeu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6xl0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tipki"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85g3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_choun"]
+
+[sub_resource type="Theme" id="Theme_ya4ey"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_tefeu")
+Button/styles/focus = SubResource("StyleBoxEmpty_o6xl0")
+Button/styles/hover = SubResource("StyleBoxEmpty_tipki")
+Button/styles/normal = SubResource("StyleBoxEmpty_85g3d")
+Button/styles/pressed = SubResource("StyleBoxEmpty_choun")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -22,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2464, 0.2464, 0.28, 1)
+color = Color(0.5568628, 0.59607846, 1, 1)
 
 [node name="Tasks" type="Control" parent="."]
 unique_name_in_owner = true
@@ -33,6 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tipki")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tasks"]
 layout_mode = 1
@@ -41,6 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Tasks/VBoxContainer"]
 custom_minimum_size = Vector2(400, 400)
@@ -51,27 +74,58 @@ text = "TODAY'S TASK!"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Control" type="Control" parent="Tasks/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="TaskControl" type="Control" parent="Tasks/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("4_tipki")
+label_text = "Big"
+metadata/_custom_type_script = "uid://dcehtbknor7lh"
+
+[node name="Control2" type="Control" parent="Tasks/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Tasks/VBoxContainer/Control"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Tasks/VBoxContainer/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Tasks/VBoxContainer/Control2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.030029297
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Control" type="Control" parent="Tasks/VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="Complete" type="Button" parent="Tasks/VBoxContainer/Control2/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_0wfyh")
-text = "Do 20 Pushups!"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Complete"
+
+[node name="Control2" type="Control" parent="Tasks/VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="Abort" type="Button" parent="Tasks/VBoxContainer/Control2/HBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1050, -326)
+theme = ExtResource("2_0wfyh")
+text = "Abort"
 
 [node name="Completed" type="Control" parent="."]
 unique_name_in_owner = true
@@ -82,6 +136,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_85g3d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Completed"]
 layout_mode = 1
@@ -116,163 +171,8 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Completed/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
-
-[node name="Control" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_0wfyh")
-text = "Do 10 Squats!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control2" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control2"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Hold a door to a stranger"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control3" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control3"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Make a salad!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control4" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control4"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Make a salad!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control5" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control5"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Make a salad!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control6" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control6"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Make a salad!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control7" type="Control" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control7"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="Completed/VBoxContainer/ScrollContainer/VBoxContainer/Control7"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Make a salad!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="MainMenu" type="Control" parent="."]
 unique_name_in_owner = true
@@ -282,6 +182,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_choun")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
@@ -308,7 +209,6 @@ vertical_alignment = 2
 layout_mode = 2
 theme = ExtResource("2_0wfyh")
 max_value = 365.0
-value = 43.0
 
 [node name="Label2" type="Label" parent="MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 125)
@@ -322,75 +222,8 @@ vertical_alignment = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
+theme_override_constants/separation = 14
 alignment = 1
-
-[node name="Control" type="Control" parent="MainMenu/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MainMenu/VBoxContainer/VBoxContainer/Control"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="MainMenu/VBoxContainer/VBoxContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_0wfyh")
-text = "Do 10 Squats!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control2" type="Control" parent="MainMenu/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MainMenu/VBoxContainer/VBoxContainer/Control2"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="MainMenu/VBoxContainer/VBoxContainer/Control2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Hold a door to a stranger"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control3" type="Control" parent="MainMenu/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MainMenu/VBoxContainer/VBoxContainer/Control3"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.19215687, 0.19215687, 0.21960784, 1)
-
-[node name="Label" type="Label" parent="MainMenu/VBoxContainer/VBoxContainer/Control3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("2_0wfyh")
-text = "Make a salad!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="MainMenu/VBoxContainer"]
 visible = false
@@ -401,11 +234,12 @@ text = "Go to completed tasks
 to see all tasks that you completed"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(180, 180)
+[node name="SideMenuButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_right = 180.0
-offset_bottom = 180.0
+offset_right = 74.0
+offset_bottom = 74.0
 theme = ExtResource("2_0wfyh")
 icon = ExtResource("3_tefeu")
 flat = true
@@ -415,10 +249,11 @@ script = ExtResource("2_sugp2")
 [node name="SideMenu" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 0
-offset_top = 2.0
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_right = 562.0
-offset_bottom = 1282.0
+grow_vertical = 2
 script = ExtResource("4_tbgi4")
 
 [node name="ColorRect2" type="ColorRect" parent="SideMenu"]
@@ -428,7 +263,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.20953685, 0.20953235, 0.23730701, 1)
+color = Color(0.35686275, 0.3882353, 0.76862746, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="SideMenu"]
 layout_mode = 0
@@ -440,20 +275,28 @@ theme_override_constants/separation = 100
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="SideMenu/VBoxContainer2/Container"]
+[node name="Button" type="Button" parent="SideMenu/VBoxContainer2/Container"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -160.0
-offset_right = 160.0
-offset_bottom = 160.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_0wfyh")
+theme = SubResource("Theme_ya4ey")
+
+[node name="TextureRect" type="TextureRect" parent="SideMenu/VBoxContainer2/Container/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 90.0
+offset_top = 52.0
+offset_right = -92.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_o6xl0")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SideMenu/VBoxContainer2"]
 layout_mode = 2
@@ -479,6 +322,7 @@ text = "About
 "
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="SideMenu/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 20
 
@@ -495,7 +339,12 @@ theme = ExtResource("2_0wfyh")
 text = "Level
 "
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="Node" type="Node" parent="."]
+
+[connection signal="pressed" from="Tasks/VBoxContainer/Control2/HBoxContainer/Control/Complete" to="Tasks" method="_on_complete_pressed"]
+[connection signal="pressed" from="Tasks/VBoxContainer/Control2/HBoxContainer/Control2/Abort" to="Tasks" method="_on_abort_pressed"]
+[connection signal="pressed" from="SideMenuButton" to="SideMenuButton" method="_on_pressed"]
+[connection signal="pressed" from="SideMenu/VBoxContainer2/Container/Button" to="SideMenu" method="_on_button_pressed"]
 [connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer/DailyTask" to="SideMenu" method="_on_daily_task_pressed"]
 [connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer/CompletedTask" to="SideMenu" method="_on_completed_task_pressed"]
 [connection signal="pressed" from="SideMenu/VBoxContainer2/VBoxContainer/About" to="SideMenu" method="_on_about_pressed"]

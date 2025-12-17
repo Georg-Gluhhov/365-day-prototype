@@ -15,12 +15,22 @@ run/main_scene="uid://155xx7s6y6ta"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalManager="*res://scripts/global_manager.gd"
+LocalNotification="*res://android/plugins/godot-local-notification-1.0.6/autoload/godot_4/LocalNotification.gd"
+
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="expand"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [rendering]
 
